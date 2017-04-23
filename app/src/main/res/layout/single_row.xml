@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.tayfuncesur.databinding.model.places" />
+        <import type="android.graphics.Color" />
+
+
+        <variable
+            name="place"
+            type="places" />
+        
+        <variable
+            name="handler"
+            type="com.tayfuncesur.databinding.model.MyHandler"/>
+    </data>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:clickable="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:onClick="@{handler::onClick}">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="8dp"
+            app:imageUrl="@{place.photo_url}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tvPlaceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(place.position)+'.'+place.name}"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/tvCounrty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{place.counrty}"
+                android:textColor="@{place.position % 2 == 0 ? Color.RED : Color.GRAY}"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="#000000"
+                android:layout_marginTop="8dp"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</layout>
